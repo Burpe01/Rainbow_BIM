@@ -14,16 +14,16 @@
 
 **Rainbow BIM** est un petit outil Windows pour les équipes BIM :
 
-- il **colore les réseaux MEP** d'une maquette IFC (canalisations, gaines, chemins de câbles, raccords, isolants) selon leur système, à partir d'un simple tableau de couleurs ;
-- il **ajoute des propriétés** (Pset) à des éléments choisis par leur GUID, à partir d'un tableau.
+- il colore entre autres les réseaux MEP d'une maquette IFC (canalisations, gaines, chemins de câbles, raccords, isolants) selon leur système à partir d'un simple tableau de couleurs ;
+- il ajoute des propriétés (Pset) à des éléments choisis par leur GUID, à partir d'un tableau.
 
-Les fichiers d'origine ne sont **jamais modifiés** : chaque traitement crée un nouveau fichier (`_couleur.ifc` ou `_pset.ifc`) à côté de l'original.
+Les fichiers d'origine ne sont jamais modifiés : chaque traitement crée un nouveau fichier (`_couleur.ifc` ou `_pset.ifc`) à côté de l'original.
 
 ## Fonctionnalités
 
 **Coloration**
 - Couleurs définies dans un CSV (séparateur `,` ou `;`, compatible Excel).
-- Familles d'éléments paramétrables : classe IFC, Pset et paramètre contenant l'abréviation du système.
+- Eléments paramétrables : classe IFC, Pset et paramètre contenant l'abréviation du système.
 - Gabarits de paramètres à importer / exporter (`.json`), prêts pour IFC4 et IFC2x3.
 - Isolants (`IfcCovering`) en gris transparent, en option.
 - Fichiers produits valides et lisibles par les principales visionneuses (testé avec BIMcollab Zoom, Navisworks, Autodesk Viewer et Flinker IFC Viewer).
@@ -49,7 +49,7 @@ Aucune installation de Python ou d'autre logiciel n'est nécessaire.
 
 Le mode d'emploi complet est intégré à l'application, dans l'onglet **Aide**.
 
-Des fichiers d'exemple (CSV de couleurs, gabarits de paramètres, CSV de propriétés) sont fournis dans le dossier [`exemples/`](exemples/).
+Des fichiers d'exemple (CSV de couleurs, gabarits de paramètres, CSV de propriétés) sont fournis dans le dossier [`data/`](data/).
 
 Un script Dynamo pour Revit, qui exporte le CSV des couleurs de systèmes depuis la maquette, est fourni dans le dossier [`rvt/`](rvt/).
 
@@ -96,7 +96,7 @@ python src/main.py
 ```
 src/          code Python : main.py (interface), coloration.py, ajout_pset.py
 assets/       logo (charte, icône, images) et aide.md (texte de l'onglet Aide)
-exemples/     fichiers d'exemple
+data/         fichiers d'exemple
 rvt/          script Dynamo (Revit) d'export du CSV des couleurs
 rainbow_bim.spec   recette de fabrication du .exe (PyInstaller)
 ```

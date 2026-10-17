@@ -44,7 +44,8 @@ jobs:
         run: |
           Copy-Item LICENSE dist/RainbowBIM/LICENSE.txt
           Copy-Item LICENCES_TIERCES.md dist/RainbowBIM/
-          Copy-Item -Recurse exemples dist/RainbowBIM/exemples
+          Copy-Item -Recurse data dist/RainbowBIM/data
+          Copy-Item -Recurse rvt dist/RainbowBIM/rvt
 
       - name: Créer le .zip
         shell: pwsh

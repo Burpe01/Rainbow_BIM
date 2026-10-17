@@ -5,7 +5,6 @@
 # Notes de travail et données de projets
 docs/
 ifc/
-data/
 
 # Fichiers BIM, où qu'ils soient
 *.ifc
