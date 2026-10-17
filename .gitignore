@@ -1,0 +1,28 @@
+# =========================================================
+# Ce qui ne part PAS sur GitHub (reste uniquement sur ce PC)
+# =========================================================
+
+# Notes de travail et données de projets
+docs/
+ifc/
+data/
+
+# Fichiers BIM, où qu'ils soient
+*.ifc
+*.ifczip
+*.rvt
+*.nwc
+*.nwd
+
+# Fichiers temporaires de Python
+__pycache__/
+*.pyc
+
+# Dossiers créés par la fabrication du .exe (PyInstaller)
+build/
+dist/
+
+# Réglages personnels et fichiers système
+.vscode/
+Thumbs.db
+desktop.ini

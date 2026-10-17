@@ -1,0 +1,35 @@
+{
+  "isolants_transparents": true,
+  "familles": [
+    {
+      "classe": "IfcFlowSegment",
+      "pset": "Pset_Canalisations",
+      "parametre": "Abréviation du système"
+    },
+    {
+      "classe": "IfcFlowFitting",
+      "pset": "Pset_Raccords de canalisation",
+      "parametre": "Abréviation du système"
+    },
+    {
+      "classe": "IfcFlowSegment",
+      "pset": "Pset_Gaines",
+      "parametre": "Abréviation du système"
+    },
+    {
+      "classe": "IfcFlowFitting",
+      "pset": "Pset_Raccords de gaine",
+      "parametre": "Abréviation du système"
+    },
+    {
+      "classe": "IfcFlowSegment",
+      "pset": "Pset_Chemins de câbles",
+      "parametre": "Type"
+    },
+    {
+      "classe": "IfcFlowFitting",
+      "pset": "Pset_Raccords de chemins de câbles",
+      "parametre": "Type"
+    }
+  ]
+}

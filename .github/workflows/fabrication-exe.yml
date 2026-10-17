@@ -1,0 +1,63 @@
+# =========================================================
+# Fabrication automatique du .exe Windows par GitHub Actions
+#
+# Se déclenche :
+#  - quand on publie une version avec une étiquette (tag) du type v1.0.0
+#    -> le .zip est ajouté à la page "Releases" du dépôt ;
+#  - à la main, depuis l'onglet "Actions" du dépôt (bouton "Run workflow")
+#    -> le .zip est téléchargeable dans le résumé de l'exécution.
+# =========================================================
+
+name: Fabrication du .exe Windows
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write        # nécessaire pour publier le .zip dans "Releases"
+
+jobs:
+  fabrication:
+    runs-on: windows-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Installer IfcOpenShell et PyInstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller
+
+      - name: Fabriquer le programme
+        run: pyinstaller --noconfirm rainbow_bim.spec
+
+      - name: Ajouter licences, exemples et mode d'emploi
+        shell: pwsh
+        run: |
+          Copy-Item LICENSE dist/RainbowBIM/LICENSE.txt
+          Copy-Item LICENCES_TIERCES.md dist/RainbowBIM/
+          Copy-Item -Recurse exemples dist/RainbowBIM/exemples
+
+      - name: Créer le .zip
+        shell: pwsh
+        run: Compress-Archive -Path dist/RainbowBIM -DestinationPath "RainbowBIM-${{ github.ref_name }}-windows.zip"
+
+      - name: Rendre le .zip téléchargeable (exécution manuelle)
+        uses: actions/upload-artifact@v4
+        with:
+          name: RainbowBIM-windows
+          path: RainbowBIM-*-windows.zip
+
+      - name: Publier le .zip dans Releases (version étiquetée)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: RainbowBIM-*-windows.zip
